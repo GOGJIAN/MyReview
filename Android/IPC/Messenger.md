@@ -116,5 +116,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
+PS.服务端service的声明，如果要在其他进程中启动service，需要设置android:exported为true。
+
 ### 结语
 Messenger的简单使用就是这样，在实际使用时还需要注意处理服务端的鉴权，binder死亡的处理等，而且Messenger本身是对于AIDL的封装，如果需要处理更复杂的功能还是需要直接使用AIDL
