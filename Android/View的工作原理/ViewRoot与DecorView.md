@@ -10,3 +10,4 @@ ViewRoot对应于ViewRootImpl类，是连接WindowManager和DecorView的纽带�
 
 
  <center> <img src ="/Assets/decorView.jpg"> </center>
+<center> DecorView的结构 </center>
