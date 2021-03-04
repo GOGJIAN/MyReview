@@ -108,6 +108,19 @@ public void dispatchMessage(Message msg) {
 private static void handleCallback(Message message) {
     message.callback.run();
 }
+
+public interface Callback {
+    /**
+     * @param msg A {@link android.os.Message Message} object
+     * @return True if no further handling is desired
+     */
+    public boolean handleMessage(Message msg);
+}
 ```
+
+优先级
+1. msg.callback  就是post方法中的runnable参数
+2. mCallback Handler(Callback callback, boolean async) 构造函数中传入的Callback参数
+3. handleMessage 方法，重写Handler时重写的方法
 
 ![](/Assets/handler消息处理.jpg)
