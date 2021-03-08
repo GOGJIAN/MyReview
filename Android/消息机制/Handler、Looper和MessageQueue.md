@@ -69,6 +69,14 @@ next 内部是一个死循环，如果没有消息，则一直阻塞，如果有
 Looper 会不断的查看 MessageQueue 中是否有消息，如果有则立刻处理，如果没有则阻塞
 
 ```
+
+private static void prepare(boolean quitAllowed) {
+    if (sThreadLocal.get() != null) {
+        throw new RuntimeException("Only one Looper may be created per thread");
+    }
+    sThreadLocal.set(new Looper(quitAllowed));
+}
+
 private Looper(boolean quitAllowed) {
     mQueue = new MessageQueue(quitAllowed);
     mThread = Thread.currentThread();
@@ -124,3 +132,12 @@ public interface Callback {
 3. handleMessage 方法，重写Handler时重写的方法
 
 ![](/Assets/handler消息处理.jpg)
+
+
+#### 内存泄漏
+
+Message 持有 Handler  ，Handler 持有  Activity
+
+如果存在未处理完的Message，就会导致Activity无法回收
+
+使用静态类和弱引用进行处理
