@@ -50,7 +50,7 @@ class MessengerService : Service() {
 ```
 
 #### 客户端代码
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
   companion object{
       const val TAG = "MessengerActivity"
